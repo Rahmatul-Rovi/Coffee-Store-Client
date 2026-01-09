@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react'; // useContext ইমপোর্ট করুন
 import { Link } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../Contexts/AuthProvider'; // অবশ্যই AuthProvider থেকে ইমপোর্ট করবেন
+
 
 const SignUp = () => {
+    // useContext ব্যবহার করুন
+    const { createUser } = useContext(AuthContext);
+
     const handleSignUp = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, email, password);
+        
+        // ফায়ারবেসে ইউজার ক্রিয়েট করা
+        createUser(email, password)
+            .then(result => {
+                console.log('User created:', result.user);
+                alert("Sign Up Successful!");
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
     };
 
     return (
@@ -59,7 +73,7 @@ const SignUp = () => {
                 </button>
 
                 <p className="text-center text-gray-600 mt-8">
-                    Already have an account? <Link to="/login" className="text-[#6F4E37] font-bold hover:underline">Log In</Link>
+                    Already have an account? <Link to="/signin" className="text-[#6F4E37] font-bold hover:underline">Log In</Link>
                 </p>
             </div>
         </div>
