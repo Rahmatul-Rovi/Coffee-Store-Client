@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'; // useContext ইমপোর্ট করুন
 import { Link } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
-import { AuthContext } from '../Contexts/AuthProvider'; // অবশ্যই AuthProvider থেকে ইমপোর্ট করবেন
+import { AuthContext } from '../Contexts/AuthProvider'; 
 
 
 const SignUp = () => {
@@ -42,10 +42,34 @@ const SignUp = () => {
                             required 
                         />
                     </div>
+                     <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
+                        <input 
+                            type="text" name="address" placeholder="Enter your address" 
+                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
+                            required 
+                        />
+                    </div>
+                     <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                        <input 
+                            type="text" name="phone" placeholder="Enter your Phone Number" 
+                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
+                            required 
+                        />
+                    </div>
+                     <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Photo URL</label>
+                        <input 
+                            type="text" name="photo" placeholder="Enter your Photo URL" 
+                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
+                            required 
+                        />
+                    </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                         <input 
-                            type="email" name="email" placeholder="email@example.com" 
+                            type="email" name="email" placeholder="Enter Your Email Address" 
                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
                             required 
                         />
@@ -53,7 +77,7 @@ const SignUp = () => {
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                         <input 
-                            type="password" name="password" placeholder="••••••••" 
+                            type="password" name="password" placeholder="Enter Your Password" 
                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
                             required 
                         />
