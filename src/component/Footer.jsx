@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 
+
 const Footer = () => {
     return (
         <footer className="relative pt-20 overflow-hidden" 
@@ -15,9 +16,9 @@ const Footer = () => {
             <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 pb-16">
                 {/* Brand Section */}
                 <div className='space-y-6'>
-                    <img 
+                  <img 
                         className='w-20' 
-                        src="https://raw.githubusercontent.com/ProgrammingHero1/coffee-store-resources/main/15.jpg" 
+                        src="/images/unnamed.jpg" 
                         alt="Coffee Logo" 
                     />
                     <h2 className="text-4xl font-rancho font-bold text-[#33312F]">Espresso Emporium</h2>
