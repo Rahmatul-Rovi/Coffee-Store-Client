@@ -21,7 +21,7 @@ const Footer = () => {
                         src="/images/unnamed.jpg" 
                         alt="Coffee Logo" 
                     />
-                    <h2 className="text-4xl font-rancho font-bold text-[#33312F]">Espresso Emporium</h2>
+                    <h2 className="text-4xl font-rancho font-bold text-[#33312F]">Caffeine Castle</h2>
                     <p className='text-[#1B1B1B] text-lg max-w-md leading-relaxed'>
                         Always ready to be your friend. Come & Have a cup of coffee to make your day more memorable and enjoy every moment with us.
                     </p>
@@ -42,11 +42,11 @@ const Footer = () => {
                         </div>
                         <div className='flex items-center gap-4 text-[#1B1B1B] text-lg'>
                             <Mail className='text-[#33312F]' fill='#33312F' size={20} /> 
-                            <span>info@coffee-shop.com</span>
+                            <span>caffeinecastle@gmail.com</span>
                         </div>
                         <div className='flex items-center gap-4 text-[#1B1B1B] text-lg'>
                             <MapPin className='text-[#33312F]' fill='#33312F' size={20} /> 
-                            <span>72, Wall Street, New York</span>
+                            <span>Gulshan 2,road-3,Dhaka</span>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ const Footer = () => {
 
             {/* Bottom Bar */}
             <div className="relative bg-[#372727] text-white py-5 text-center font-rancho text-xl tracking-widest">
-                <p>Copyright © 2026 Espresso Emporium | All Rights Reserved</p>
+                <p>Copyright © 2026 Caffeine-Castle | All Rights Reserved</p>
             </div>
         </footer>
     );

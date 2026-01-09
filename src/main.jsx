@@ -11,6 +11,8 @@ import CoffeeDetails from "./component/CoffeeDetails.jsx";
 import SignIn from "./component/SignIn.jsx";
 import SignUp from "./component/SignUp.jsx";
 import AuthProvider from "./Contexts/AuthProvider.jsx";
+import Contact from "./component/Contact.jsx";
+import AboutUs from "./component/AboutUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
         path: "/signup",
         Component: SignUp,
       },
+      {
+        path: "/contact",
+        Component: Contact
+      },
+      {
+        path: "/about",
+        Component: AboutUs
+      }
     ],
   },
 ]);
