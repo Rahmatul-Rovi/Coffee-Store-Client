@@ -21,14 +21,14 @@ const Home = () => {
             </div>
 
             {/* Features Section */}
-            <div className='bg-[#ECEAE3] py-12 px-4'>
-                <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8'>
-                    <FeatureItem icon="☕" title="Awesome Aroma" desc="You will love the greeting bliss of our roasted coffee beans." />
-                    <FeatureItem icon="⭐" title="High Quality" desc="We served the coffee to you maintaining the best quality." />
-                    <FeatureItem icon="🍃" title="Pure Grades" desc="The coffee is made of the green coffee beans which you will love." />
-                    <FeatureItem icon="🔥" title="Proper Roasting" desc="Your coffee is brewed by roasting the green coffee beans." />
-                </div>
-            </div>
+           <div className='bg-[#ECEAE3] py-16 px-4'>
+    <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 '>
+        <FeatureItem icon="☕" title="Awesome Aroma" desc="You will love the greeting bliss of our roasted coffee beans." />
+        <FeatureItem icon="⭐" title="High Quality" desc="We served the coffee to you maintaining the best quality." />
+        <FeatureItem icon="🍃" title="Pure Grades" desc="The coffee is made of the green coffee beans which you will love." />
+        <FeatureItem icon="🔥" title="Proper Roasting" desc="Your coffee is brewed by roasting the green coffee beans." />
+    </div>
+</div>
 
             {/* Products Section */}
             <div className="max-w-7xl mx-auto my-20">
