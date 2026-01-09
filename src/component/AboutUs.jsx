@@ -4,7 +4,6 @@ const AboutUs = () => {
     return (
         <div className="py-20 bg-[#F5F4F1]">
             <div className="max-w-7xl mx-auto px-6 lg:flex items-center gap-16">
-                {/* Image Section */}
                 <div className="lg:w-1/2 mb-10 lg:mb-0">
                     <div className="relative">
                         <img 
@@ -18,7 +17,6 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                {/* Text Section */}
                 <div className="lg:w-1/2 space-y-6">
                     <h4 className="text-[#E3B577] font-semibold tracking-widest uppercase">Our Story</h4>
                     <h2 className="text-5xl font-bold font-rancho text-[#33312F]">Tradition in Every Sip</h2>

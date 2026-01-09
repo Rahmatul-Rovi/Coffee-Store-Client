@@ -76,7 +76,6 @@ const UpdateCoffee = () => {
             </div>
           </div>
 
-          {/* Row 2: Supplier and Taste */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
               <label className="label font-bold text-gray-700">Supplier</label>
@@ -100,7 +99,6 @@ const UpdateCoffee = () => {
             </div>
           </div>
 
-          {/* Row 3: Category and Price */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
               <label className="label font-bold text-gray-700">Category</label>
@@ -124,7 +122,6 @@ const UpdateCoffee = () => {
             </div>
           </div>
 
-          {/* Row 4: Photo URL */}
           <div className="form-control">
             <label className="label font-bold text-gray-700">Photo</label>
             <input
@@ -136,7 +133,6 @@ const UpdateCoffee = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <input 
             className="btn w-full bg-[#D2B48C] hover:bg-[#B6966C] border-2 border-[#33312F] text-[#33312F] font-rancho text-2xl mt-6 cursor-pointer transition-all" 
             type="submit" 
