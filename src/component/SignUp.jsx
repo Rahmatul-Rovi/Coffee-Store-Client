@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'; // useContext ইমপোর্ট করুন
+import React, { useContext } from 'react'; 
 import { Link } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../Contexts/AuthProvider'; 
 
 
 const SignUp = () => {
-    // useContext ব্যবহার করুন
+    
     const { createUser } = useContext(AuthContext);
 
     const handleSignUp = (e) => {
@@ -14,7 +14,6 @@ const SignUp = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         
-        // ফায়ারবেসে ইউজার ক্রিয়েট করা
         createUser(email, password)
             .then(result => {
                 console.log('User created:', result.user);
@@ -29,7 +28,6 @@ const SignUp = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#fdf8f3] p-5">
         <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-[450px] border-t-[10px] border-[#6F4E37]">
             <div className="text-center mb-8">
-                {/* Brand Name - Coffee color explicit rakha hoyeche */}
                 <h2 className="text-4xl font-bold text-[#6F4E37] font-rancho">Sign Up</h2>
                 <p className="text-gray-500 mt-2 italic text-sm">Join us and smell the fresh coffee!</p>
             </div>

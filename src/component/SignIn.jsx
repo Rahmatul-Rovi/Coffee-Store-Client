@@ -14,14 +14,12 @@ const SignIn = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#fdf8f3] p-5">
         <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-[450px] border-t-[10px] border-[#6F4E37]">
             <div className="text-center mb-8">
-                {/* Brand Title - Coffee Brown color explicit rakha hoyeche */}
                 <h2 className="text-4xl font-bold text-[#6F4E37] font-rancho">Welcome Back</h2>
                 <p className="text-gray-500 mt-2 italic text-sm">Log in to grab your favorite cup!</p>
             </div>
 
             <form onSubmit={handleSignIn} className="space-y-5">
                 <div>
-                    {/* Label color dark rakha hoyeche jate dark mode-e haraye na jay */}
                     <label className="block text-sm font-semibold text-[#372727] mb-2">Email Address</label>
                     <input 
                         type="email" name="email" placeholder="email@example.com" 
