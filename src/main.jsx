@@ -7,12 +7,13 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./component/Home.jsx";
 import AddCoffee from "./component/AddCoffee.jsx";
 import UpdateCoffee from "./component/UpdateCoffee.jsx";
-import CoffeeDetails from "./component/CoffeeDetails.jsx";
 import SignIn from "./component/SignIn.jsx";
 import SignUp from "./component/SignUp.jsx";
 import AuthProvider from "./Contexts/AuthProvider.jsx";
 import Contact from "./component/Contact.jsx";
 import AboutUs from "./component/AboutUs.jsx";
+import PrivateRoute from "./route/PrivateRoute.jsx";
+import CoffeeDetails from "./component/CoffeeDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,16 +27,16 @@ const router = createBrowserRouter([
       },
       {
         path: "addCoffee",
-        Component: AddCoffee,
+        element: <PrivateRoute> <AddCoffee></AddCoffee> </PrivateRoute>
       },
       {
         path: "coffee/:id",
-        Component: CoffeeDetails,
+        element: <PrivateRoute> <CoffeeDetails></CoffeeDetails> </PrivateRoute>
       },
       {
         path: "updateCoffee/:id",
         loader: (params) => fetch(`http://localhost:3000/coffees/${params.id}`),
-        Component: UpdateCoffee,
+        element: <PrivateRoute> <UpdateCoffee></UpdateCoffee> </PrivateRoute>
       },
       {
         path: "/signin",
@@ -52,7 +53,8 @@ const router = createBrowserRouter([
       {
         path: "/about",
         Component: AboutUs
-      }
+      },
+      
     ],
   },
 ]);
