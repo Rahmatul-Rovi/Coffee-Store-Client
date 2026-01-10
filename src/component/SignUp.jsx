@@ -5,19 +5,24 @@ import { AuthContext } from '../Contexts/AuthProvider';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSignUp = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         
         createUser(email, password)
             .then(result => {
-                Swal.fire("Good job!", "Account Created Successfully!", "success");
-                navigate('/');
+                // Profile update kora (Name & Photo)
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        Swal.fire("Good job!", "Account Created with Profile Picture!", "success");
+                        navigate('/');
+                    })
             })
             .catch(error => {
                 Swal.fire("Error", error.message, "error");
@@ -44,47 +49,34 @@ const SignUp = () => {
                 <form onSubmit={handleSignUp} className="space-y-5">
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Full Name</label>
-                        <input 
-                            type="text" name="name" placeholder="Enter your name" 
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
-                            required 
-                        />
+                        <input type="text" name="name" placeholder="Enter your name" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
+                    </div>
+                    {/* --- Photo URL Field --- */}
+                    <div>
+                        <label className="block text-sm font-semibold text-[#372727] mb-2">Photo URL</label>
+                        <input type="text" name="photo" placeholder="https://example.com/photo.jpg" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Email Address</label>
-                        <input 
-                            type="email" name="email" placeholder="Enter Your Email Address" 
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
-                            required 
-                        />
+                        <input type="email" name="email" placeholder="Enter Your Email Address" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Password</label>
-                        <input 
-                            type="password" name="password" placeholder="Enter Your Password" 
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" 
-                            required 
-                        />
+                        <input type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
 
-                    <button className="w-full bg-[#6F4E37] hover:bg-[#5a3e2b] text-white font-bold py-3 rounded-xl shadow-lg transition duration-300 font-rancho text-xl tracking-wider">
-                        Sign Up
-                    </button>
+                    <button className="w-full bg-[#6F4E37] hover:bg-[#5a3e2b] text-white font-bold py-3 rounded-xl shadow-lg transition duration-300 font-rancho text-xl tracking-wider">Sign Up</button>
                 </form>
 
                 <div className="relative my-8 border-b border-gray-200 text-center">
                     <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-white px-4 text-gray-400 text-sm">OR</span>
                 </div>
 
-                <button 
-                    onClick={handleGoogleSignIn}
-                    className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-50 bg-white transition duration-300 text-[#372727] font-medium">
+                <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-50 bg-white transition duration-300 text-[#372727] font-medium">
                     <FaGoogle className="text-red-500" /> Sign Up with Google
                 </button>
 
-                <p className="text-center text-gray-600 mt-8">
-                    Already have an account? <Link to="/signin" className="text-[#6F4E37] font-bold hover:underline">Log In</Link>
-                </p>
+                <p className="text-center text-gray-600 mt-8">Already have an account? <Link to="/signin" className="text-[#6F4E37] font-bold hover:underline">Log In</Link></p>
             </div>
         </div>
     );

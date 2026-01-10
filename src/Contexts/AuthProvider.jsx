@@ -5,7 +5,8 @@ import {
     onAuthStateChanged, 
     signInWithEmailAndPassword, 
     signInWithPopup, 
-    signOut 
+    signOut,
+    updateProfile  // <--- Eita add kora hoyeche
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 
@@ -16,31 +17,38 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // 1. Create User (Sign Up)
+    // 1. Create User
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    // 2. Sign In User
+    // 2. Update User Profile (Name and Photo)
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, 
+            photoURL: photo
+        });
+    };
+
+    // 3. Sign In User
     const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    // 3. Google Sign In
+    // 4. Google Sign In
     const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     };
 
-    // 4. Log Out
+    // 5. Log Out
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
     };
 
-    // 5. Observe User State (Eita na dile login thakbe na refresh dile)
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -53,6 +61,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        updateUserProfile, // <--- Context-e pathano holo
         signInUser,
         signInWithGoogle,
         logOut

@@ -1,17 +1,43 @@
-import React from "react";
-import { Link, NavLink } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../Contexts/AuthProvider"; // Tomar path onujayi thik koro
+import Swal from "sweetalert2";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Logged Out!",
+          text: "Come back soon for more coffee!",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false
+        });
+        navigate("/");
+      })
+      .catch((error) => console.error(error.message));
+  };
+
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className={({ isActive }) => isActive ? "text-[#E3B577] font-bold" : ""}>Home</NavLink>
+      </li>
+      {/* User login thakle 'Add Coffee' menu dekhabe */}
+      {user && (
+        <li>
+          <NavLink to="/addCoffee" className={({ isActive }) => isActive ? "text-[#E3B577] font-bold" : ""}>Add Coffee</NavLink>
+        </li>
+      )}
+      <li>
+        <NavLink to="/about" className={({ isActive }) => isActive ? "text-[#E3B577] font-bold" : ""}>About Us</NavLink>
       </li>
       <li>
-        <NavLink to="/about">About Us</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact" className={({ isActive }) => isActive ? "text-[#E3B577] font-bold" : ""}>Contact</NavLink>
       </li>
     </>
   );
@@ -52,21 +78,48 @@ const Header = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 gap-2 font-medium">{navLinks}</ul>
       </div>
-      <div className="navbar-end gap-2">
-        <Link
-          to="/signin"
-          className="btn btn-outline btn-warning btn-sm border-[#E3B577] text-[#E3B577]"
-        >
-          Sign In
-        </Link>
-        <Link
-          to="/signup"
-          className="btn bg-[#E3B577] border-none text-black btn-sm hover:bg-white"
-        >
-          Sign Up
-        </Link>
+      
+      <div className="navbar-end gap-3">
+        {/* User login thakle Logout dekhabe, na thakle Login/SignUp */}
+        {user ? (
+          <div className="flex items-center gap-4">
+            <div className="tooltip tooltip-bottom" data-tip={user?.displayName || "User"}>
+              <div className="avatar">
+                <div className="w-10 rounded-full border-2 border-[#E3B577] ring ring-offset-base-100 ring-offset-2 ring-[#E3B577]/20">
+                  // Header.jsx er bhetore image tag-ta eibhabe update koro:
+<img 
+    src={user && user.photoURL ? user.photoURL : "https://i.ibb.co/mJR9Qxc/user.png"} 
+    alt="User profile" 
+    onError={(e) => { e.target.src = "https://i.ibb.co/mJR9Qxc/user.png" }} // Jodi link kaj na kore
+/>
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={handleLogOut}
+              className="btn btn-sm bg-transparent border-2 border-[#E3B577] text-[#E3B577] hover:bg-[#E3B577] hover:text-black transition-all"
+            >
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <>
+            <Link
+              to="/signin"
+              className="btn btn-outline btn-warning btn-sm border-[#E3B577] text-[#E3B577] hover:bg-[#E3B577] hover:text-black"
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/signup"
+              className="btn bg-[#E3B577] border-none text-black btn-sm hover:bg-white"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
