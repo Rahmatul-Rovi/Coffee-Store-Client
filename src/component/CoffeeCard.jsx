@@ -1,6 +1,6 @@
 import React from "react";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom"; // router er jaygay react-router-dom use kora safe
+import { Link } from "react-router-dom"; 
 import { FaEye, FaPen, FaTrash } from "react-icons/fa";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {

@@ -10,7 +10,6 @@ const Footer = () => {
                 backgroundSize: 'cover' 
             }}>
             
-            {/* Overlay to make text readable */}
             <div className="absolute inset-0 bg-white/90"></div>
             
             <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 pb-16">

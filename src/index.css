@@ -10,8 +10,7 @@
   font-family: 'Rancho', cursive;
 }
 
-/* Background image-er texture jodi chao */
 .bg-coffee-texture {
-  background-image: url('https://i.ibb.co/9g7046n/15.jpg'); /* Texture background */
+  background-image: url('https://i.ibb.co/9g7046n/15.jpg'); 
   background-size: cover;
 }

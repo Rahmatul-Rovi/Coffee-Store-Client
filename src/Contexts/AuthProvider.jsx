@@ -6,7 +6,7 @@ import {
     signInWithEmailAndPassword, 
     signInWithPopup, 
     signOut,
-    updateProfile  // <--- Eita add kora hoyeche
+    updateProfile  
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 
@@ -22,8 +22,6 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
-
-    // 2. Update User Profile (Name and Photo)
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, 
@@ -61,7 +59,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
-        updateUserProfile, // <--- Context-e pathano holo
+        updateUserProfile, 
         signInUser,
         signInWithGoogle,
         logOut
