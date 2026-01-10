@@ -29,13 +29,14 @@ const router = createBrowserRouter([
         path: "addCoffee",
         element: <PrivateRoute> <AddCoffee></AddCoffee> </PrivateRoute>
       },
-      {
-        path: "coffee/:id",
-        element: <PrivateRoute> <CoffeeDetails></CoffeeDetails> </PrivateRoute>
-      },
+     {
+    path: "coffeeDetails/:id",
+    element: <PrivateRoute> <CoffeeDetails /> </PrivateRoute>, 
+    loader: ({ params }) => fetch(`http://localhost:3000/coffees/${params.id}`) 
+},
       {
         path: "updateCoffee/:id",
-        loader: (params) => fetch(`http://localhost:3000/coffees/${params.id}`),
+        loader: ({params}) => fetch(`http://localhost:3000/coffees/${params.id}`),
         element: <PrivateRoute> <UpdateCoffee></UpdateCoffee> </PrivateRoute>
       },
       {

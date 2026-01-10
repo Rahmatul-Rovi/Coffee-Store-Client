@@ -30,10 +30,12 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
                 icon: "success",
               });
               //remove the coffee from the state
-              const remainingCoffees = coffees.filter((coffee) => coffee._id !== _id);
+              const remainingCoffees = coffees.filter(
+                (coffee) => coffee._id !== _id
+              );
               setCoffees(remainingCoffees);
             }
-          })
+          });
       }
     });
   };
@@ -51,12 +53,13 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
         </div>
         <div className="card-actions justify-end">
           <div className="join join-vertical space-y-2">
-            <Link to={`/coffee/${_id}`}>
+            // Tomar eikhaner Link ta change koro
+            <Link to={`/coffeeDetails/${_id}`}>
               <button className="btn join-item">View</button>
             </Link>
-           <Link to={`/updateCoffee/${_id}`}>
-             <button className="btn join-item">Edit</button>
-           </Link>
+            <Link to={`/updateCoffee/${_id}`}>
+              <button className="btn join-item">Edit</button>
+            </Link>
             <button onClick={() => handleDelete(_id)} className="btn join-item">
               Delete
             </button>

@@ -17,11 +17,27 @@ const SignUp = () => {
         
         createUser(email, password)
             .then(result => {
-                // Profile update kora (Name & Photo)
+                // 1. Firebase Profile Update (Name & Photo)
                 updateUserProfile(name, photo)
                     .then(() => {
-                        Swal.fire("Good job!", "Account Created with Profile Picture!", "success");
-                        navigate('/');
+                        // 2. Database (MongoDB) e User info save kora
+                        const createdAt = result.user?.metadata?.creationTime;
+                        const newUser = { name, email, photo, createdAt };
+
+                        fetch('http://localhost:3000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(newUser)
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                Swal.fire("Good job!", "Account Created & Saved to Database!", "success");
+                                navigate('/');
+                            }
+                        })
                     })
             })
             .catch(error => {
@@ -32,8 +48,24 @@ const SignUp = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                Swal.fire("Success!", "Signed up with Google", "success");
-                navigate('/');
+                // Google user der info o database e pathano uchit
+                const user = result.user;
+                const newUser = { 
+                    name: user?.displayName, 
+                    email: user?.email, 
+                    photo: user?.photoURL,
+                    lastSignInTime: user?.metadata?.lastSignInTime 
+                };
+
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                })
+                .then(() => {
+                    Swal.fire("Success!", "Signed up with Google", "success");
+                    navigate('/');
+                })
             })
             .catch(error => console.error(error.message));
     };
@@ -51,15 +83,17 @@ const SignUp = () => {
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Full Name</label>
                         <input type="text" name="name" placeholder="Enter your name" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
-                    {/* --- Photo URL Field --- */}
+                    
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Photo URL</label>
                         <input type="text" name="photo" placeholder="https://example.com/photo.jpg" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
+
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Email Address</label>
                         <input type="email" name="email" placeholder="Enter Your Email Address" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
                     </div>
+
                     <div>
                         <label className="block text-sm font-semibold text-[#372727] mb-2">Password</label>
                         <input type="password" name="password" placeholder="Enter Your Password" className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-white text-neutral-800 placeholder-gray-400 focus:ring-2 focus:ring-[#6F4E37] outline-none transition-all" required />
@@ -72,7 +106,7 @@ const SignUp = () => {
                     <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-white px-4 text-gray-400 text-sm">OR</span>
                 </div>
 
-                <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-50 bg-white transition duration-300 text-[#372727] font-medium">
+                <button onClick={handleGoogleSignIn} className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-50 bg-white transition duration-300 text-[#372727] font-medium shadow-sm">
                     <FaGoogle className="text-red-500" /> Sign Up with Google
                 </button>
 

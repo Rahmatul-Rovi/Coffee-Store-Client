@@ -3,7 +3,6 @@ import { useLoaderData, Link } from 'react-router';
 import { ArrowLeft, Coffee, Tag, ShoppingCart, User } from 'lucide-react';
 
 const CoffeeDetails = () => {
-    // Router theke loader data niye asha
     const coffee = useLoaderData();
     const { name, supplier, taste, category, details, price, photo } = coffee;
 
